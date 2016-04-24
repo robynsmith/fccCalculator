@@ -1,42 +1,47 @@
-var users = ["freecodecamp", "storbeck", "terakilobyte", "habathcx","RobotCaleb","thomasballinger","noobs2ninjas","beohoff", "brunofin", "comster404"];
+var a = 0;
 
-var currentHTML = "";
+var operation = null;
 
-function getHTML(username, data) {
-  if (data["stream"] === null) {
-    currentHTML += username + ': <a href="https://www.twitch.tv/' + username + '">Offline</a></br>';
-  }
+var result = 0;
 
-  else if (data["stream"] === undefined) {
-    currentHTML += username + ': Account Closed</br>';
-  }
-  else {
-    currentHTML += username +': <a href="https://www.twitch.tv/' + username + '">Online</a>, Streaming: ' + data["stream"]["game"] + '</br>';
+var state = "start";
+
+function isInteger(number) {
+  switch(number) {
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':
+        return true;
+        break;
+      default:
+        return false;
   }
 }
 
-function displayContent() {
-  //console.log(data);
-  $(".message").html(currentHTML);
-}
-
-function getContent(url, user) {
-   $.getJSON(url, function(data) {
-        getHTML(user, data);
-    });
+function performOperation() {
+  return null;
 }
 
 $(document).ready(function() {
-    users.forEach(function(user) {
-      console.log(user);
+  $("button").click(function() {
+    var buttonContent = $(this).attr("value");
 
-      var url = 'https://api.twitch.tv/kraken/streams/' + user + '?callback=?';
-
-      getContent(url, user); 
+    $('input').val(buttonContent);
     
-    });
+    if (state == "start") {
+      if (isInteger(buttonContent) ) {
+        result = buttonContent;
+      } else {
+        //Do nothing
+      }
+    }
 
-    setTimeout(displayContent, 500);
-    setInterval(displayContent, 10000);
-    setInterval(displayContent, 20000);
+  });
 });
