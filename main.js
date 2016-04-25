@@ -1,8 +1,9 @@
-var a = 0;
+var a = null;
+var b = null;
 
 var operation = null;
 
-var result = 0;
+var result = "";
 
 var state = "start";
 
@@ -18,6 +19,7 @@ function isInteger(number) {
       case '7':
       case '8':
       case '9':
+      case '.':
         return true;
         break;
       default:
@@ -32,16 +34,30 @@ function performOperation() {
 $(document).ready(function() {
   $("button").click(function() {
     var buttonContent = $(this).attr("value");
+    var displayItem = "";
 
-    $('input').val(buttonContent);
-    
-    if (state == "start") {
-      if (isInteger(buttonContent) ) {
-        result = buttonContent;
-      } else {
-        //Do nothing
-      }
+    if (buttonContent === "=") {
+      
     }
+
+    if (isInteger(buttonContent) ) {
+      result = result + buttonContent;
+      displayItem = result;
+    } else {
+        operation = buttonContent;
+
+        if (a === null && result !== "") {
+          a = result;
+        } else {
+          if (result !== "") {
+            b = result;
+          }
+        }
+    }
+
+    
+
+    $('input').val(result);
 
   });
 });
