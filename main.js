@@ -1,12 +1,5 @@
-var a = null;
-var b = null;
-
 var operation = null;
-
 var result = "";
-
-var state = "start";
-
 var numberArray = [];
 
 function isInteger(number) {
@@ -44,7 +37,7 @@ function performOperation() {
       return result * parseFloat(numberArray.toString().replace(/,/g, ''));
       break;
     default:
-      return "Error, operation character not valid, see performOperation()";;
+      return "Opeartion=" + operation;
   }
 }
 
@@ -53,10 +46,12 @@ $(document).ready(function() {
     var buttonContent = $(this).attr("value");
     var displayItem = "";
 
+    console.log("ButtonContent====>" + buttonContent + "\n Operation===>" + operation);
+
     if (buttonContent === "=") {
       result = performOperation();
       displayItem = result;
-    } else if(buttonContent === "CE") {
+    } else if(buttonContent === "CE"  || buttonContent === "AC") {
       result = "";
       displayItem = "";
       numberArray = [];
@@ -65,17 +60,14 @@ $(document).ready(function() {
       numberArray.push(buttonContent);
       displayItem = numberArray.toString().replace(/,/g, '');
     } else {
-        operation = buttonContent;
-        result = parseFloat(numberArray.toString().replace(/,/g, ''));
-        numberArray = [];
-
-        if (a === null && result !== "") {
-          a = result;
+        if (operation !== null) {
+          result = performOperation();
+          displayItem = result;
         } else {
-          if (result !== "") {
-            b = result;
-          }
+          result = parseFloat(numberArray.toString().replace(/,/g, ''));
         }
+        numberArray = [];
+        operation = buttonContent;
     }
 
     
