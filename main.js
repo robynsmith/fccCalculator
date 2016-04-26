@@ -7,6 +7,8 @@ var result = "";
 
 var state = "start";
 
+var numberArray = [];
+
 function isInteger(number) {
   switch(number) {
       case '0':
@@ -28,7 +30,22 @@ function isInteger(number) {
 }
 
 function performOperation() {
-  return null;
+  switch (operation) {
+    case '+':
+      return result + parseFloat(numberArray.toString().replace(/,/g, ''));
+      break;
+    case '-':
+      return result - parseFloat(numberArray.toString().replace(/,/g, ''));
+      break;
+    case '/':
+      return result / parseFloat(numberArray.toString().replace(/,/g, ''));
+      break;
+    case 'X':
+      return result * parseFloat(numberArray.toString().replace(/,/g, ''));
+      break;
+    default:
+      return "Error, operation character not valid, see performOperation()";;
+  }
 }
 
 $(document).ready(function() {
@@ -37,14 +54,15 @@ $(document).ready(function() {
     var displayItem = "";
 
     if (buttonContent === "=") {
-      
-    }
-
-    if (isInteger(buttonContent) ) {
-      result = result + buttonContent;
+      result = performOperation();
       displayItem = result;
+    } else if (isInteger(buttonContent) ) {
+      numberArray.push(buttonContent);
+      displayItem = numberArray.toString().replace(/,/g, '');
     } else {
         operation = buttonContent;
+        result = parseFloat(numberArray.toString().replace(/,/g, ''));
+        numberArray = [];
 
         if (a === null && result !== "") {
           a = result;
@@ -57,7 +75,7 @@ $(document).ready(function() {
 
     
 
-    $('input').val(result);
+    $('input').val(displayItem);
 
   });
 });
