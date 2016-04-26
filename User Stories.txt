@@ -10,8 +10,6 @@ https://www.freecodecamp.com/challenges/build-a-javascript-calculator
 Current:
 ====================
 
-1) User Story: I can add, subtract, multiply and divide two numbers.
-
 ====================
 To-do:
 ====================
@@ -23,3 +21,5 @@ To-do:
 ====================
 Complete
 ====================
+
+1) User Story: I can add, subtract, multiply and divide two numbers.
