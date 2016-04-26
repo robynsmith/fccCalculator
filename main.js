@@ -56,7 +56,12 @@ $(document).ready(function() {
     if (buttonContent === "=") {
       result = performOperation();
       displayItem = result;
-    } else if (isInteger(buttonContent) ) {
+    } else if(buttonContent === "CE") {
+      result = "";
+      displayItem = "";
+      numberArray = [];
+    }
+    else if (isInteger(buttonContent) ) {
       numberArray.push(buttonContent);
       displayItem = numberArray.toString().replace(/,/g, '');
     } else {
