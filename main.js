@@ -51,6 +51,9 @@ $(document).ready(function() {
     if (buttonContent === "=") {
       result = performOperation();
       displayItem = result;
+      result = "";
+      operation = null;
+      numberArray = [];
     } else if(buttonContent === "CE"  || buttonContent === "AC") {
       result = "";
       displayItem = "";
