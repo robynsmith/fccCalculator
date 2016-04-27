@@ -54,7 +54,7 @@ $(document).ready(function() {
       result = "";
       operation = null;
       numberArray = [];
-    } else if(buttonContent === "CE"  || buttonContent === "AC") {
+    } else if(buttonContent === "CE"  || buttonContent === "AC" || buttonContent === "" || buttonContent === "%") {
       result = "";
       displayItem = "";
       numberArray = [];
